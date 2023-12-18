@@ -4,12 +4,14 @@ package cipherfactory
 
 import (
 	"github.com/NooFreeNames/Cripto/pkg/crypto/cipher"
+	"github.com/NooFreeNames/Cripto/pkg/crypto/cipher/meta"
 )
 
 // ICipherFactory represents an interface for creating ciphers.
 // ICipherFactory can be used to store the cipher until the password is received
 // from the user
 type ICipherFactory interface {
+	meta.IMetaProvider
 	// Cipher creates a new instance of ICipher with the given password and salt.
 	Cipher(password string, salt []byte) (cipher.ICipher, error)
 }
