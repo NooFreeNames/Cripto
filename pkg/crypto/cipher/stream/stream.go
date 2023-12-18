@@ -6,8 +6,7 @@ import (
 	"fmt"
 )
 
-// StreamCipher represents a stream cipher that can be used for
-// encryption and decryption.
+// StreamCipher allows you to encrypt and decrypt data using cipher.Stream
 type StreamCipher struct {
 	salt   []byte
 	stream cipher.Stream

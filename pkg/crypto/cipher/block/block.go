@@ -6,8 +6,7 @@ import (
 	"fmt"
 )
 
-// BlockCipher represents a block cipher that can be used for encryption
-// and decryption.
+// BlockCipher allows you to encrypt and decrypt data using cipher.BlockMode
 type BlockCipher struct {
 	salt        []byte
 	encryptMode cipher.BlockMode
