@@ -4,10 +4,13 @@ package stream
 import (
 	"crypto/cipher"
 	"fmt"
+
+	"github.com/NooFreeNames/Cripto/pkg/crypto/cipher/meta"
 )
 
 // StreamCipher allows you to encrypt and decrypt data using cipher.Stream
 type StreamCipher struct {
+	meta.MetaProvider
 	salt   []byte
 	stream cipher.Stream
 }
@@ -41,7 +44,7 @@ func (sc StreamCipher) Salt() []byte {
 }
 
 // NewStreamCipher creates a new instance of StreamCipher with the given
-// stream and salt.
-func NewStreamCipher(stream cipher.Stream, salt []byte) StreamCipher {
-	return StreamCipher{salt, stream}
+// stream, salt and metadata.
+func NewStreamCipher(stream cipher.Stream, salt []byte, m meta.IMeta) StreamCipher {
+	return StreamCipher{meta.NewMetaProvider(m), salt, stream}
 }

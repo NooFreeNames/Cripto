@@ -1,7 +1,10 @@
 // Package cipher provides the ability to encrypt and decrypt data.
 package cipher
 
+import "github.com/NooFreeNames/Cripto/pkg/crypto/cipher/meta"
+
 type ICipher interface {
+	meta.IMetaProvider
 	// Encrypt encrypts a number of blocks. The length of
 	// src must be a multiple of the block size. Dst and src must overlap
 	// entirely or not at all.

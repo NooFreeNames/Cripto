@@ -4,10 +4,13 @@ package block
 import (
 	"crypto/cipher"
 	"fmt"
+
+	"github.com/NooFreeNames/Cripto/pkg/crypto/cipher/meta"
 )
 
 // BlockCipher allows you to encrypt and decrypt data using cipher.BlockMode
 type BlockCipher struct {
+	meta.MetaProvider
 	salt        []byte
 	encryptMode cipher.BlockMode
 	decryptMode cipher.BlockMode
@@ -48,10 +51,11 @@ func saltToIV(salt []byte, IVsize int) []byte {
 	return iv
 }
 
-// NewBlockCipher creates a new BlockCipher using the provided block and salt.
-func NewBlockCipher(block cipher.Block, salt []byte) (BlockCipher, error) {
+// NewBlockCipher creates a new BlockCipher using the provided block, salt and metadata.
+func NewBlockCipher(block cipher.Block, salt []byte, m meta.IMeta) (BlockCipher, error) {
 	iv := saltToIV(salt, block.BlockSize())
 	return BlockCipher{
+		meta.NewMetaProvider(m),
 		salt,
 		cipher.NewCBCEncrypter(block, iv),
 		cipher.NewCBCDecrypter(block, iv),
