@@ -14,10 +14,6 @@ type BlockCipher struct {
 	decryptMode cipher.BlockMode
 }
 
-func (bc BlockCipher) Salt() []byte {
-	return bc.salt
-}
-
 func (bc BlockCipher) Encrypt(dst, src []byte) (err error) {
 	defer func() {
 		if msg := recover(); msg != nil {
@@ -40,6 +36,10 @@ func (bc BlockCipher) Decrypt(dst, src []byte) (err error) {
 
 func (bc BlockCipher) BlockSize() int {
 	return bc.encryptMode.BlockSize()
+}
+
+func (bc BlockCipher) Salt() []byte {
+	return bc.salt
 }
 
 // saltToIV creates an IV from the given salt and IV size.
