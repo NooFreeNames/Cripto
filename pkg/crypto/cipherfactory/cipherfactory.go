@@ -1,4 +1,4 @@
-// The cipherfactory package provides functionality for storing cipher until a
+// Package cipherfactory provides functionality for storing cipher until a
 // password is received from the user
 package cipherfactory
 
